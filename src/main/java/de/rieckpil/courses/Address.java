@@ -1,5 +1,7 @@
 package de.rieckpil.courses;
 
+import java.util.Objects;
+
 public class Address {
 
   private String country;
@@ -37,5 +39,10 @@ public class Address {
 
   public void setPostalCode(Integer postalCode) {
     this.postalCode = postalCode;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(country, city, postalCode);
   }
 }
