@@ -5,35 +5,30 @@ import java.time.LocalDateTime;
 public class RegistrationService {
 
   private final UserRepository userRepository;
-  private final BannedUserClient bannedUserClient;
+  private final BannedUsersClient bannedUsersClient;
 
-  public RegistrationService(UserRepository userRepository, BannedUserClient bannedUserClient) {
+  public RegistrationService(UserRepository userRepository, BannedUsersClient bannedUsersClient) {
     this.userRepository = userRepository;
-    this.bannedUserClient = bannedUserClient;
+    this.bannedUsersClient = bannedUsersClient;
   }
 
-  public Long registerUser(String username) {
+  public User registerUser(String username, ContactInformation contactInformation) {
 
-    if (username.isBlank()) {
-      throw new IllegalArgumentException("Username must not be blank");
+    if (bannedUsersClient.isBanned(username, contactInformation.getAddress())) {
+      throw new IllegalArgumentException("This user is banned from our system");
     }
 
-    if (bannedUserClient.isBanned(username)) {
-      // banned user
-      return 42L;
-    }
+    User existingUser = userRepository.findByUsername(username);
 
-    if (userRepository.findByUsername(username.toUpperCase()) != null) {
-      // already registered
-      return 32L;
+    if (existingUser != null) {
+      return existingUser;
     }
 
     User user = new User();
     user.setUsername(username);
+    user.setEmail(contactInformation.getEmail() == null ? username + "myorg.io" : contactInformation.getEmail());
     user.setCreatedAt(LocalDateTime.now());
 
-    User savedUser = userRepository.save(user);
-
-    return savedUser.getId();
+    return userRepository.save(user);
   }
 }

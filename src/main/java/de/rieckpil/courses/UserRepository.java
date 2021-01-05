@@ -1,12 +1,7 @@
 package de.rieckpil.courses;
 
-public class UserRepository {
+public interface UserRepository {
+  User save(User user);
 
-  public User save(User user) {
-    return user;
-  }
-
-  User findByUsername(String username) {
-    return null;
-  }
+  User findByUsername(String username);
 }
