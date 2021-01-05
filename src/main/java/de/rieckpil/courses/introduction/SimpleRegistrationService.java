@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 
 public class SimpleRegistrationService {
 
-  public User registerUser(String username) {
+  private UserRepository userRepository = new JpaUserRepository();
 
-    UserRepository userRepository = new JpaUserRepository();
+  public User registerUser(String username) {
 
     User existingUser = userRepository.findByUsername(username);
 
