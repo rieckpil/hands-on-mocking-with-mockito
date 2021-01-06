@@ -1,5 +1,7 @@
 package de.rieckpil.courses;
 
+import java.util.List;
+
 public class BannedUsersClient {
 
   public boolean isBanned(String username, Address address) {
@@ -18,5 +20,9 @@ public class BannedUsersClient {
 
   public double banRate() {
     return 42.42;
+  }
+
+  public List<Long> bannedUserId() {
+    return List.of(1L, 2L, 3L);
   }
 }

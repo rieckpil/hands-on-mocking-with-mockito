@@ -12,7 +12,6 @@ public class Utils {
     address.setCountry(country);
     address.setPostalCode(postalCode);
 
-
     ContactInformation contactInformation = new ContactInformation();
     contactInformation.setEmail(email);
     contactInformation.setAddress(address);

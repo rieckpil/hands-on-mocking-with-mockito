@@ -29,7 +29,6 @@ public class RegistrationServiceBDDTest {
   @InjectMocks
   private RegistrationService cut;
 
-
   @Test
   void basicStubbingWithBDD() {
     BDDMockito.given(userRepository.findByUsername("mike")).willReturn(new User());

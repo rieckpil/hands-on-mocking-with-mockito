@@ -12,7 +12,6 @@ import org.mockito.quality.Strictness;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-@MockitoSettings(strictness = Strictness.LENIENT)
 class EventNotifierTest {
 
   @Mock
@@ -20,18 +19,6 @@ class EventNotifierTest {
 
   @Test
   void voidMethodStubbing() {
-
-    // Mockito.when(eventNotifier.notifyNewUserCreation("mike")).thenReturn(null);
-    Mockito.doThrow(new RuntimeException("Error!")).when(eventNotifier).notifyNewUserCreation("mike");
-    Mockito.doNothing().doThrow(new RuntimeException("Error!")).when(eventNotifier).notifyNewUserCreation("mike");
   }
 
-  @Test
-  void voidMethodDoNothing() {
-    Mockito.doNothing().doThrow(new RuntimeException("Error!")).when(eventNotifier).notifyNewUserCreation("mike");
-
-    eventNotifier.notifyNewUserCreation("mike");
-
-    assertThrows(RuntimeException.class, () -> eventNotifier.notifyNewUserCreation("mike"));
-  }
 }
