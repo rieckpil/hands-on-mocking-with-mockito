@@ -31,22 +31,25 @@ public class RegistrationServiceBDDTest {
 
   @Test
   void basicStubbingWithBDD() {
-    BDDMockito.given(userRepository.findByUsername("mike")).willReturn(new User());
 
-    BDDMockito.given(userRepository.save(any(User.class))).willAnswer(invocation -> {
-      User userToStore = invocation.getArgument(0);
-      userToStore.setId(42L);
-      return userToStore;
-    });
+    BDDMockito
+      .given(userRepository.findByUsername("duke"))
+      .willReturn(new User());
 
+    BDDMockito
+      .given(userRepository.save(any(User.class)))
+      .willAnswer(invocation -> {
+        User user = invocation.getArgument(0);
+        user.setId(42L);
+        return user;
+      });
 
-    System.out.println(userRepository.findByUsername("mike"));
-    System.out.println(userRepository.save(new User()));
-  }
+    BDDMockito
+      .given(userRepository.findByUsername("mike"))
+      .willThrow(new RuntimeException("Error in DB"));
 
-  @Test
-  void basicStubbingWithBDDThrowException() {
-    BDDMockito.given(userRepository.findByUsername("admin")).willThrow(new RuntimeException("Don't request admin"));
-    assertThrows(RuntimeException.class, () -> System.out.println(userRepository.findByUsername("admin")));
+    System.out.println(userRepository.findByUsername("duke"));
+    assertThrows(RuntimeException.class, () -> System.out.println(userRepository.findByUsername("mike")));
+    System.out.println(userRepository.save(new User()).getId());
   }
 }
