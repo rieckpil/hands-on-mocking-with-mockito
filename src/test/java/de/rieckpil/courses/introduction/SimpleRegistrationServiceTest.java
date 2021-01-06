@@ -3,15 +3,17 @@ package de.rieckpil.courses.introduction;
 import de.rieckpil.courses.User;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class SimpleRegistrationServiceTest {
 
   @Test
-  void shouldRegisterUnknownUser() {
+  void shouldStoreNewUser() {
 
     SimpleRegistrationService cut = new SimpleRegistrationService();
 
-    // how to control the behavior of the collaborators?
     User user = cut.registerUser("duke");
+
   }
 
 }

@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class RefactoredSimpleRegistrationServiceTest {
 
   @Test
-  void shouldRegisterUnknownUser() {
+  void shouldStoreNewUser() {
 
     RefactoredSimpleRegistrationService cut = new RefactoredSimpleRegistrationService(new FakeUserRepository());
 
-    User result = cut.registerUser("duke");
+    User user = cut.registerUser("duke");
 
   }
 

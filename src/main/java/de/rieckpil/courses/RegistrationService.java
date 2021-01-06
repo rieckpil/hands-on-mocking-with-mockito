@@ -26,7 +26,7 @@ public class RegistrationService {
 
     User user = new User();
     user.setUsername(username);
-    user.setEmail(contactInformation.getEmail() == null ? username + "myorg.io" : contactInformation.getEmail());
+    user.setEmail(contactInformation.getEmail() == null ? username + "@myorg.io" : contactInformation.getEmail());
     user.setCreatedAt(LocalDateTime.now());
 
     return userRepository.save(user);

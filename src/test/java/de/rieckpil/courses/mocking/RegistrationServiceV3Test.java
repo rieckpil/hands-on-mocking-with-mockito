@@ -1,12 +1,15 @@
 package de.rieckpil.courses.mocking;
 
-import de.rieckpil.courses.*;
+import de.rieckpil.courses.BannedUsersClient;
+import de.rieckpil.courses.RegistrationService;
+import de.rieckpil.courses.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+// @RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
 class RegistrationServiceV3Test {
 
@@ -21,13 +24,9 @@ class RegistrationServiceV3Test {
 
   @Test
   void shouldRegisterUnknownUser() {
-
-    System.out.println(userRepository.toString());
     System.out.println(userRepository.getClass());
-
-    System.out.println(bannedUsersClient.toString());
     System.out.println(bannedUsersClient.getClass());
 
-    User user = cut.registerUser("duke", Utils.createContactInformation("duke"));
+    System.out.println(cut.toString());
   }
 }
