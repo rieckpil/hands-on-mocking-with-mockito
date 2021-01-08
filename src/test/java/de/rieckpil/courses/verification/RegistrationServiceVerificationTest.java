@@ -9,8 +9,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,6 +25,12 @@ public class RegistrationServiceVerificationTest {
   @Captor
   private ArgumentCaptor<User> userArgumentCaptor;
 
+  @Captor
+  private ArgumentCaptor<String> stringArgumentCaptor;
+
+  @Captor
+  private ArgumentCaptor<Address> addressArgumentCaptor;
+
   @InjectMocks
   private RegistrationService cut;
 
@@ -33,7 +38,7 @@ public class RegistrationServiceVerificationTest {
   void basicVerification() {
 
     when(bannedUsersClient.isBanned(eq("duke"), any(Address.class))).thenReturn(true);
-    when(bannedUsersClient.amountOfBannedAccounts()).thenReturn(42);
+    // when(bannedUsersClient.amountOfGloballyBannedAccounts()).thenReturn(42L);
 
     assertThrows(IllegalArgumentException.class,
       () -> cut.registerUser("duke", Utils.createContactInformation("duke@mockito.org")));
@@ -44,9 +49,8 @@ public class RegistrationServiceVerificationTest {
     Mockito.verify(bannedUsersClient, atMost(1)).isBanned(eq("duke"), any(Address.class));
     Mockito.verify(bannedUsersClient, never()).bannedUserId();
 
-    // bannedUsersClient.banRate();
-
     Mockito.verifyNoMoreInteractions(bannedUsersClient, userRepository);
+
     // Mockito.verify(bannedUsersClient, description("Nobody checked for mike")).isBanned(eq("mike"), any(Address.class));
   }
 
@@ -88,11 +92,16 @@ public class RegistrationServiceVerificationTest {
     assertNotNull(user);
 
     Mockito.verify(userRepository).save(userArgumentCaptor.capture());
+    Mockito.verify(bannedUsersClient).isBanned(eq("duke"), addressArgumentCaptor.capture());
 
-    User toStoreUser = userArgumentCaptor.getValue();
+    System.out.println(addressArgumentCaptor.getValue());
 
-    assertNull(toStoreUser.getId());
-    assertNotNull(toStoreUser.getCreatedAt());
-    assertTrue(toStoreUser.getEmail().contains("@myorg.io"));
+    User userToStore = userArgumentCaptor.getValue();
+
+    System.out.println(userToStore);
+    assertNotNull(userToStore.getUsername());
+    assertNotNull(userToStore.getCreatedAt());
+    assertTrue(userToStore.getEmail().contains("@myorg.io"));
+    assertNull(userToStore.getId());
   }
 }
