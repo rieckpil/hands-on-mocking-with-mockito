@@ -2,6 +2,10 @@ package de.rieckpil.courses;
 
 public class Utils {
 
+  public static ContactInformation createContactInformation() {
+    return createContactInformation(null, "Germany", "Berlin", 10119);
+  }
+
   public static ContactInformation createContactInformation(String email) {
     return createContactInformation(email, "Germany", "Berlin", 10119);
   }
