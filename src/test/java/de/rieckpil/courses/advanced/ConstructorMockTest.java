@@ -17,7 +17,7 @@ class ConstructorMockTest {
 
     assertNull(new JpaUserRepository().findByUsername("duke"));
 
-    try (MockedConstruction mocked = mockConstruction(JpaUserRepository.class)) {
+    try (MockedConstruction<JpaUserRepository> mocked = mockConstruction(JpaUserRepository.class)) {
       JpaUserRepository repository = new JpaUserRepository();
 
       Mockito.when(repository.findByUsername("duke")).thenReturn(new User());
