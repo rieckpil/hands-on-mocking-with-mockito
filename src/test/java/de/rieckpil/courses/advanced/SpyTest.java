@@ -3,7 +3,6 @@ package de.rieckpil.courses.advanced;
 import de.rieckpil.courses.BannedUsersClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,20 +20,16 @@ class SpyTest {
   void spies() {
     Mockito.when(bannedUsersClient.amountOfBannedAccounts()).thenReturn(500);
 
-    System.out.println(bannedUsersClient.amountOfBannedAccounts());
-    System.out.println(bannedUsersClient.amountOfGloballyBannedAccounts());
     System.out.println(bannedUsersClient.banRate());
-
-    Mockito.verify(bannedUsersClient).banRate();
-    Mockito.verify(bannedUsersClient).amountOfGloballyBannedAccounts();
-    Mockito.verify(bannedUsersClient).amountOfBannedAccounts();
+    System.out.println(bannedUsersClient.amountOfBannedAccounts());
+    System.out.println(bannedUsersClient.bannedUserId());
   }
 
   @Test
   void spiesGotcha() {
     List spiedList = Mockito.spy(ArrayList.class);
 
-    // Mockito.when(spy.get(0)).thenReturn("spy");
+    // Mockito.when(spiedList.get(0)).thenReturn("spy");
 
     Mockito.doReturn("spy").when(spiedList).get(0);
 

@@ -7,26 +7,26 @@ import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.mockConstruction;
 
+// since 3.5.0
 class ConstructorMockTest {
 
   @Test
-  void testConstructorMocking() {
+  void constructorMocking() {
 
-    assertNull(new JpaUserRepository().findByUsername("duke"));
+    System.out.println(new JpaUserRepository().findByUsername("mike"));
 
-    try (MockedConstruction<JpaUserRepository> mocked = mockConstruction(JpaUserRepository.class)) {
-      JpaUserRepository repository = new JpaUserRepository();
+    try (MockedConstruction<JpaUserRepository> mocked = Mockito.mockConstruction(JpaUserRepository.class)) {
 
-      Mockito.when(repository.findByUsername("duke")).thenReturn(new User());
+      JpaUserRepository jpaUserRepository = new JpaUserRepository();
 
-      assertNotNull(repository.findByUsername("duke"));
+      Mockito.when(jpaUserRepository.findByUsername("duke")).thenReturn(new User());
 
-      Mockito.verify(repository).findByUsername("duke");
+      assertNotNull(jpaUserRepository.findByUsername("duke"));
+
+      Mockito.verify(jpaUserRepository).findByUsername("duke");
     }
 
-    assertNull(new JpaUserRepository().findByUsername("duke"));
+    System.out.println(new JpaUserRepository().findByUsername("duke"));
   }
 }

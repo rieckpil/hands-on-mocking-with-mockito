@@ -16,6 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+// since 3.4.0
 @ExtendWith(MockitoExtension.class)
 class StaticMethodMockTest {
 
@@ -36,6 +37,7 @@ class StaticMethodMockTest {
     System.out.println(LocalDateTime.now());
 
     try (MockedStatic<LocalDateTime> mockedLocalDateTime = Mockito.mockStatic(LocalDateTime.class)) {
+
       mockedLocalDateTime.when(LocalDateTime::now).thenReturn(defaultLocalDateTime);
 
       when(bannedUsersClient.isBanned(eq("duke"), any(Address.class))).thenReturn(false);
@@ -49,6 +51,10 @@ class StaticMethodMockTest {
       User user = cut.registerUser("duke", Utils.createContactInformation("duke@mockito.org"));
 
       System.out.println(user.getCreatedAt());
+
+      System.out.println(LocalDateTime.now());
+      System.out.println(LocalDateTime.now());
+      System.out.println(LocalDateTime.now());
 
       assertEquals(defaultLocalDateTime, user.getCreatedAt());
     }
