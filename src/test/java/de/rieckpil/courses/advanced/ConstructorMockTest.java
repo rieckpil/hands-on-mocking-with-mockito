@@ -29,4 +29,19 @@ class ConstructorMockTest {
 
     System.out.println(new JpaUserRepository().findByUsername("duke"));
   }
+
+  @Test
+  void constructorMockingWithDirectStubbing() {
+
+    try (MockedConstruction<JpaUserRepository> mocked = Mockito.mockConstruction(JpaUserRepository.class,
+      (mock, context) -> Mockito.when(mock.findByUsername("duke")).thenReturn(new User()))) {
+
+      JpaUserRepository jpaUserRepository = new JpaUserRepository();
+
+      assertNotNull(jpaUserRepository.findByUsername("duke"));
+
+      Mockito.verify(jpaUserRepository).findByUsername("duke");
+    }
+
+  }
 }
