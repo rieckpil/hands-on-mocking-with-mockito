@@ -1,4 +1,4 @@
-[![Masterclass](https://rieckpil.de/wp-content/uploads/2020/11/hands-on-mocking-with-mockito-course-logo.png)](https://rieckpil.de/testing-spring-boot-applications-masterclass/)
+[![Mockito Course](https://rieckpil.de/wp-content/uploads/2020/11/hands-on-mocking-with-mockito-course-logo.png)](https://rieckpil.de/hands-on-mocking-with-mockito-online-course/)
 
 # Local Project Setup
 
