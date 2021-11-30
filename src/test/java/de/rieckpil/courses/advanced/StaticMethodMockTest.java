@@ -33,32 +33,5 @@ class StaticMethodMockTest {
 
   @Test
   void mockStaticMethod() {
-
-    System.out.println(LocalDateTime.now());
-
-    try (MockedStatic<LocalDateTime> mockedLocalDateTime = Mockito.mockStatic(LocalDateTime.class)) {
-
-      mockedLocalDateTime.when(LocalDateTime::now).thenReturn(defaultLocalDateTime);
-
-      when(bannedUsersClient.isBanned(eq("duke"), any(Address.class))).thenReturn(false);
-      when(userRepository.findByUsername("duke")).thenReturn(null);
-      when(userRepository.save(any(User.class))).thenAnswer(invocation -> {
-        User user = invocation.getArgument(0);
-        user.setId(42L);
-        return user;
-      });
-
-      User user = cut.registerUser("duke", Utils.createContactInformation("duke@mockito.org"));
-
-      System.out.println(user.getCreatedAt());
-
-      System.out.println(LocalDateTime.now());
-      System.out.println(LocalDateTime.now());
-      System.out.println(LocalDateTime.now());
-
-      assertEquals(defaultLocalDateTime, user.getCreatedAt());
-    }
-
-    System.out.println(LocalDateTime.now());
   }
 }

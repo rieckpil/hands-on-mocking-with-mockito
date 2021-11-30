@@ -22,15 +22,9 @@ class RegistrationServiceV2Test {
 
   @BeforeEach
   void setUp() {
-    MockitoAnnotations.openMocks(this);
-    // this.cut = new RegistrationService(userRepository, bannedUsersClient);
   }
 
   @Test
   void shouldRegisterUnknownUser() {
-    System.out.println(userRepository.getClass());
-    System.out.println(bannedUsersClient.getClass());
-
-    System.out.println(cut.toString());
   }
 }

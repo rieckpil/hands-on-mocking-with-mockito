@@ -9,11 +9,6 @@ class SimpleRegistrationServiceTest {
 
   @Test
   void shouldStoreNewUser() {
-
-    SimpleRegistrationService cut = new SimpleRegistrationService();
-
-    User user = cut.registerUser("duke");
-
   }
 
 }

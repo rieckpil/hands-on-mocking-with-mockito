@@ -13,35 +13,9 @@ class ConstructorMockTest {
 
   @Test
   void constructorMocking() {
-
-    System.out.println(new JpaUserRepository().findByUsername("mike"));
-
-    try (MockedConstruction<JpaUserRepository> mocked = Mockito.mockConstruction(JpaUserRepository.class)) {
-
-      JpaUserRepository jpaUserRepository = new JpaUserRepository();
-
-      Mockito.when(jpaUserRepository.findByUsername("duke")).thenReturn(new User());
-
-      assertNotNull(jpaUserRepository.findByUsername("duke"));
-
-      Mockito.verify(jpaUserRepository).findByUsername("duke");
-    }
-
-    System.out.println(new JpaUserRepository().findByUsername("duke"));
   }
 
   @Test
   void constructorMockingWithDirectStubbing() {
-
-    try (MockedConstruction<JpaUserRepository> mocked = Mockito.mockConstruction(JpaUserRepository.class,
-      (mock, context) -> Mockito.when(mock.findByUsername("duke")).thenReturn(new User()))) {
-
-      JpaUserRepository jpaUserRepository = new JpaUserRepository();
-
-      assertNotNull(jpaUserRepository.findByUsername("duke"));
-
-      Mockito.verify(jpaUserRepository).findByUsername("duke");
-    }
-
   }
 }

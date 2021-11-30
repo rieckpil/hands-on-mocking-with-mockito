@@ -9,11 +9,6 @@ class RefactoredSimpleRegistrationServiceTest {
 
   @Test
   void shouldStoreNewUser() {
-
-    RefactoredSimpleRegistrationService cut = new RefactoredSimpleRegistrationService(new FakeUserRepository());
-
-    User user = cut.registerUser("duke");
-
   }
 
 }
