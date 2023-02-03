@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class RegistrationServiceBDDTest {
+class RegistrationServiceBDDTest {
 
   @Mock
   private UserRepository userRepository;

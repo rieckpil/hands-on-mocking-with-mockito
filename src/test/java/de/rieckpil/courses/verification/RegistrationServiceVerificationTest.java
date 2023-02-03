@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.WARN)
-public class RegistrationServiceVerificationTest {
+class RegistrationServiceVerificationTest {
 
   @Mock
   private UserRepository userRepository;

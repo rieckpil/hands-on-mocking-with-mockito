@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class DeepStubTest {
+class DeepStubTest {
 
   @Test
   void withoutDeepStubs() {
