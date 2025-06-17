@@ -2,7 +2,7 @@ name: Build & Test Maven Project
 on: [push, pull_request]
 jobs:
   build-and-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Build Application
     steps:
       - name: Checkout the source code
