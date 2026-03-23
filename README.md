@@ -2,7 +2,7 @@
 
 # Hands-On Mocking With Mockito Online Course
 
-[![Build & Test Maven Project](https://github.com/rieckpil/hands-on-mocking-with-mockito/workflows/Build%20&%20Test%20Maven%20Project/badge.svg)](https://github.com/rieckpil/hands-on-mocking-with-mockito/actions)
+[![Build & Test Maven Project](https://github.com/rieckpil/hands-on-mocking-with-mockito/actions/workflows/maven.yml/badge.svg)](https://github.com/rieckpil/hands-on-mocking-with-mockito/actions/workflows/maven.yml)
 
 ## Introduction
 
